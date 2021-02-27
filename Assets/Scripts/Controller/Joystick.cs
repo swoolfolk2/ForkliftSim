@@ -13,8 +13,8 @@ public class Joystick : MonoBehaviour, IDragHandler, IEndDragHandler
         initialPosition = transform.position;
         RectTransform rectTransform = GetComponent<RectTransform>();
         RectTransform parentRectTransform = rectTransform.parent.GetComponent<RectTransform>();
-        bounds.x = parentRectTransform.rect.width / 2f;
-        bounds.y = parentRectTransform.rect.height / 2f;
+        bounds.x = parentRectTransform.rect.width / 3f;
+        bounds.y = parentRectTransform.rect.height / 3f;
     }
 
     public void OnDrag(PointerEventData data)
