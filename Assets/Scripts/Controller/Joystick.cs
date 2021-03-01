@@ -7,6 +7,10 @@ public class Joystick : MonoBehaviour, IDragHandler, IEndDragHandler
 {
     private Vector3 initialPosition;
     private Vector2 bounds;
+    public Vector3 direction;
+    public GameObject controller;
+    private Control pausePlay;
+
 
     private void Start()
     {
@@ -15,6 +19,12 @@ public class Joystick : MonoBehaviour, IDragHandler, IEndDragHandler
         RectTransform parentRectTransform = rectTransform.parent.GetComponent<RectTransform>();
         bounds.x = parentRectTransform.rect.width / 3f;
         bounds.y = parentRectTransform.rect.height / 3f;
+        pausePlay = controller.GetComponent<Control>();
+    }
+
+    private void Update()
+    {
+        pausePlay.truckDirection = direction;
     }
 
     public void OnDrag(PointerEventData data)
@@ -29,10 +39,13 @@ public class Joystick : MonoBehaviour, IDragHandler, IEndDragHandler
         {
             transform.position = new Vector3(transform.position.x, currPosition.y, transform.position.z);
         }
+
+        direction = transform.position.normalized;
     }
 
     public void OnEndDrag(PointerEventData data)
     {
-        transform.position = initialPosition;
+        transform.localPosition = Vector3.zero;
+        direction = Vector3.zero;
     }
 }
