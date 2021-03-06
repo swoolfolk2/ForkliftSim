@@ -8,8 +8,7 @@ public class Joystick : MonoBehaviour, IDragHandler, IEndDragHandler
     private Vector3 initialPosition;
     private Vector2 bounds;
     public Vector3 direction;
-    public GameObject controller;
-    private Control pausePlay;
+    public Controller pausePlay;
 
 
     private void Start()
@@ -19,7 +18,6 @@ public class Joystick : MonoBehaviour, IDragHandler, IEndDragHandler
         RectTransform parentRectTransform = rectTransform.parent.GetComponent<RectTransform>();
         bounds.x = parentRectTransform.rect.width / 3f;
         bounds.y = parentRectTransform.rect.height / 3f;
-        pausePlay = controller.GetComponent<Control>();
     }
 
     private void Update()

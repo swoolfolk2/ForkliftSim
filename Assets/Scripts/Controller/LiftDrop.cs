@@ -7,12 +7,10 @@ public class LiftDrop : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 {
     public int direction = 1;
     private bool hold = false;
-    public GameObject controller;
-    private Control pausePlay;
+    public Controller pausePlay;
     private float height;
     private void Start()
     {
-        pausePlay = controller.GetComponent<Control>();
         pausePlay.height = 0;
     }
     private void Update()
