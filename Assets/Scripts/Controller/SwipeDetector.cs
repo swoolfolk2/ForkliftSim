@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -11,8 +11,7 @@ public class SwipeDetector : MonoBehaviour, IPointerClickHandler, IEndDragHandle
     private Vector2 startPoint;
     private Vector2 direction;
     private Text text;
-
-    private void Start()
+    void Start()
     {
         text = GetComponent<Text>();
     }

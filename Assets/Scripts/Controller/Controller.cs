@@ -20,19 +20,34 @@ public class Controller : MonoBehaviour
         Screen.orientation = ScreenOrientation.Landscape;
     }
 
+    private void Update()
+    {
+        if (Screen.orientation == ScreenOrientation.Landscape && !gameContainer.activeSelf)
+        {
+            menuContainer.SetActive(false);
+            gameContainer.SetActive(true);
+
+        }
+        else if (Screen.orientation == ScreenOrientation.Portrait && !menuContainer.activeSelf)
+        {
+            gameContainer.SetActive(false);
+            menuContainer.SetActive(true);
+            text.text = "Desliza y Navega\nToca y Elije";
+        }
+    }
+
     public void pauseGame()
     {
         Screen.orientation = ScreenOrientation.Portrait;
+        /* gameContainer.SetActive(false);
         menuContainer.SetActive(true);
-        gameContainer.SetActive(false);
-        text.text = "Desliza y Navega\nToca y Elije";
+        text.text = "Desliza y Navega\nToca y Elije"; */
     }
 
     public void playGame()
     {
         Screen.orientation = ScreenOrientation.Landscape;
-        gameContainer.SetActive(true);
-        menuContainer.SetActive(false);
-        Debug.Log(Screen.orientation);
+        /* menuContainer.SetActive(false);
+        gameContainer.SetActive(true); */
     }
 }
