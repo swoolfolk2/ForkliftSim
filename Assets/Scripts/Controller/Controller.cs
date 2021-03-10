@@ -39,15 +39,10 @@ public class Controller : MonoBehaviour
     public void pauseGame()
     {
         Screen.orientation = ScreenOrientation.Portrait;
-        /* gameContainer.SetActive(false);
-        menuContainer.SetActive(true);
-        text.text = "Desliza y Navega\nToca y Elije"; */
     }
 
     public void playGame()
     {
         Screen.orientation = ScreenOrientation.Landscape;
-        /* menuContainer.SetActive(false);
-        gameContainer.SetActive(true); */
     }
 }
