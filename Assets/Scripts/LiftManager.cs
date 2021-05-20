@@ -27,6 +27,7 @@ public class LiftManager : MonoBehaviour
         else if (!isLifted && box)
         {
             box.transform.SetParent(boxesTransform);
+
         }
         else if (isLifted && !box)
         {

@@ -8,10 +8,14 @@ public class JoystickManager : MonoBehaviour
     public LiftManager liftManager;
     public GameObject mainCamera;
     public GameObject secondaryCamera;
-    private float ls;
     private Vector2 rs;
+    private float ls;
     private float lt;
     private float rt;
+    public Vector2 GetRs()
+    {
+        return rs;
+    }
     void Start()
     {
         mainCamera.SetActive(true);
@@ -19,7 +23,6 @@ public class JoystickManager : MonoBehaviour
     }
     void Update()
     {
-
         if (Input.anyKey)
         {
             if (Input.GetKey(KeyCode.Joystick1Button0))
@@ -64,9 +67,5 @@ public class JoystickManager : MonoBehaviour
             characterManager.SetVelocityConstant(rt, lt);
             characterManager.Rotate(ls);
         }
-    }
-    public Vector2 GetRs()
-    {
-        return rs;
     }
 }

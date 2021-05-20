@@ -14,21 +14,6 @@ public class CharacterManager : MonoBehaviour
     private float translation;
     private float liftTranslation;
     private Vector3 liftPosition;
-    void Start()
-    {
-        liftPosition = liftTransform.transform.position;
-    }
-    void Update()
-    {
-        if (!isBrakePressed)
-        {
-            Accelerate();
-        }
-        else
-        {
-            Brake();
-        }
-    }
     public void SetVelocityConstant(float rt, float lt)
     {
         if (rt > 0 && lt == 0)
@@ -69,6 +54,21 @@ public class CharacterManager : MonoBehaviour
     public void SetIsBrakePressed(bool isBrakePressed)
     {
         this.isBrakePressed = isBrakePressed;
+    }
+    void Start()
+    {
+        liftPosition = liftTransform.transform.position;
+    }
+    void Update()
+    {
+        if (!isBrakePressed)
+        {
+            Accelerate();
+        }
+        else
+        {
+            Brake();
+        }
     }
     public void Rotate(float ls)
     {
