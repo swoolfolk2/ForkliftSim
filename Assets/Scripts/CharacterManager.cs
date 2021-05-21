@@ -12,7 +12,6 @@ public class CharacterManager : MonoBehaviour
     private float velocityConstant;
     private bool isBrakePressed;
     private float translation;
-    private float liftTranslation;
     private Vector3 liftPosition;
     public void SetVelocityConstant(float rt, float lt)
     {
@@ -91,27 +90,6 @@ public class CharacterManager : MonoBehaviour
         else
         {
             velocityConstant = 0;
-        }
-    }
-    public void MoveLift(bool isUp)
-    {
-        if (isUp)
-        {
-            liftTranslation = liftSpeed * Time.deltaTime;
-        }
-        else
-        {
-            liftTranslation = -liftSpeed * Time.deltaTime;
-        }
-        liftTransform.Translate(0, 0, liftTranslation);
-        liftPosition = liftTransform.transform.position;
-        if (liftPosition.y > 1)
-        {
-            liftTransform.transform.position = new Vector3(liftPosition.x, 1, liftPosition.z);
-        }
-        else if (liftPosition.y < 0)
-        {
-            liftTransform.transform.position = new Vector3(liftPosition.x, 0, liftPosition.z);
         }
     }
     private void Accelerate()

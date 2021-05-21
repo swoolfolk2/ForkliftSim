@@ -23,34 +23,33 @@ public class JoystickManager : MonoBehaviour
     }
     void Update()
     {
-        if (Input.anyKey)
+        if (Input.GetKey(KeyCode.Joystick1Button0))
         {
-            if (Input.GetKey(KeyCode.Joystick1Button0))
-            {
-                characterManager.MoveLift(false);
-            }
-            if (Input.GetKeyDown(KeyCode.Joystick1Button1))
-            {
-                liftManager.SetIsLifted(!liftManager.GetIsLifted());
-            }
-            if (Input.GetKeyDown(KeyCode.Joystick1Button2))
-            {
-                mainCamera.SetActive(!mainCamera.activeSelf);
-                secondaryCamera.SetActive(!secondaryCamera.activeSelf);
-            }
-            if (Input.GetKey(KeyCode.Joystick1Button3))
-            {
-                characterManager.MoveLift(true);
-            }
-            if (Input.GetKeyDown(KeyCode.Joystick1Button5))
-            {
-                characterManager.SetIsBrakePressed(true);
-                characterManager.Brake();
-            }
-            if (Input.GetKeyDown(KeyCode.Joystick1Button7))
-            {
-                Debug.Log("Start pressed");
-            }
+            liftManager.MoveLift(false);
+        }
+        if (Input.GetKeyDown(KeyCode.Joystick1Button1))
+        {
+            Debug.Log("B Pressed");
+            liftManager.SetIsLifted(!liftManager.GetIsLifted());
+            liftManager.FixLiftedBox();
+        }
+        if (Input.GetKeyDown(KeyCode.Joystick1Button2))
+        {
+            mainCamera.SetActive(!mainCamera.activeSelf);
+            secondaryCamera.SetActive(!secondaryCamera.activeSelf);
+        }
+        if (Input.GetKey(KeyCode.Joystick1Button3))
+        {
+            liftManager.MoveLift(true);
+        }
+        if (Input.GetKeyDown(KeyCode.Joystick1Button5))
+        {
+            characterManager.SetIsBrakePressed(true);
+            characterManager.Brake();
+        }
+        if (Input.GetKeyDown(KeyCode.Joystick1Button7))
+        {
+            Debug.Log("Start pressed");
         }
         rs = new Vector2(Input.GetAxis("RS Horizontal"), Input.GetAxis("RS Vertical"));
         ls = Input.GetAxis("LS Horizontal");
