@@ -8,6 +8,8 @@ public class JoystickManager : MonoBehaviour
     public LiftManager liftManager;
     public GameObject mainCamera;
     public GameObject secondaryCamera;
+    public GameManager gameManager;
+    public MenuManager menuManager;
     private Vector2 rs;
     private float ls;
     private float lt;
@@ -23,13 +25,36 @@ public class JoystickManager : MonoBehaviour
     }
     void Update()
     {
+        if (gameManager.gameContainer.activeSelf)
+        {
+            CaptureInputs();
+        }
+        else
+        {
+            if (Input.GetKeyDown(KeyCode.Joystick1Button7))
+            {
+                gameManager.SetGameContainerActive();
+            }
+
+            if (Input.GetKeyDown(KeyCode.Joystick1Button1))
+            {
+                menuManager.GoBack();
+            }
+        }
+        if (!characterManager.GetIsBrakePressed())
+        {
+            characterManager.SetVelocityConstant(rt, lt);
+            characterManager.Rotate(ls);
+        }
+    }
+    private void CaptureInputs()
+    {
         if (Input.GetKey(KeyCode.Joystick1Button0))
         {
             liftManager.MoveLift(false);
         }
         if (Input.GetKeyDown(KeyCode.Joystick1Button1))
         {
-            Debug.Log("B Pressed");
             liftManager.SetIsLifted(!liftManager.GetIsLifted());
             liftManager.FixLiftedBox();
         }
@@ -49,7 +74,7 @@ public class JoystickManager : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.Joystick1Button7))
         {
-            Debug.Log("Start pressed");
+            menuManager.SetMenuContainerActive();
         }
         rs = new Vector2(Input.GetAxis("RS Horizontal"), Input.GetAxis("RS Vertical"));
         ls = Input.GetAxis("LS Horizontal");
@@ -59,12 +84,6 @@ public class JoystickManager : MonoBehaviour
         if (Input.GetKeyUp(KeyCode.Joystick1Button5))
         {
             characterManager.SetIsBrakePressed(false);
-        }
-
-        if (!characterManager.GetIsBrakePressed())
-        {
-            characterManager.SetVelocityConstant(rt, lt);
-            characterManager.Rotate(ls);
         }
     }
 }
